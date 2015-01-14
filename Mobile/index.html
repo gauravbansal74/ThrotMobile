@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>THROT</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="css/customcss.css" />
+			<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+			<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+			<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+			<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
+			<script src="scripts/customscripts.js"></script>
+
+	</head>
+	<body>
+		<!-- Start of first page -->
+		<div data-role="page" id="page1" data-title="Find Offers">
+
+			<div data-role="header">
+				<h1>THROT</h1>
+			</div><!-- /header -->
+
+			<div data-role="content">
+				<p>
+					Welcome <span id="username"></span>
+
+                <div class="ui-bar-c ui-corner-all ui-shadow" style="padding:1em;">
+					 <div class="locationRules"></div>
+					 <input type="button" id="btnInit" value="Get Offers"/>
+					 <ul data-role="listview" id="prof-list" data-divider-theme="a" data-inset="true">
+						<li data-role="list-divider" data-theme="b" role="heading">Stores</li>
+					</ul>
+				</div>
+
+			</div><!-- /content -->
+
+			<div data-role="footer" data-id="foo1" data-position="fixed">
+			<center>
+			<p> Copyright</p>
+			</center>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+	<!-- Start of Second Page-->
+	<div data-role="page" id="details-page">
+		<div data-role="header" data-theme="b"><a href="#" data-rel="back" data-role="button">Go back</a>
+
+         <h1>Offers Page</h1>
+
+			</div>
+		<div data-role="content">
+			<div data-role="collapsible-set" id="prof-list1" data-divider-theme="a" data-inset="true" >
+
+			</div>
+		</div>
+	</div>
+
+	<!--End here-->
+
+	<script>
+	</script>
+	</body>
+
+</html>
