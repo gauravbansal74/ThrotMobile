@@ -16,7 +16,7 @@ var premise = '';
 var info = '';
 var info1 = '';
 var ServerURL = 'http://buzzxprs.com/throt/';
-var availofferurl ='availOffer.php';
+var availofferurl = 'availOffer.php';
 
 
 
@@ -53,7 +53,13 @@ $$(document).on('pageInit', function(e) {
         }
         else
         {
+            var deals = "You have availed " + sessionStorage.getItem("deals") + " deals till now!";
 
+
+            myApp.addNotification({
+                title: 'Deals',
+                message: deals
+            });
         }
 
     }
@@ -66,6 +72,9 @@ $$(document).on('pageInit', function(e) {
         }
         else
         {
+
+
+
             mainView.router.load({
                 pageName: 'offer-screen'
             })
@@ -74,37 +83,6 @@ $$(document).on('pageInit', function(e) {
     }
 
 
-    else if (page.name == "profile-screen")
-    {
-
-        if (localStorage.getItem("phone") === null) {
-            mainView.router.load({
-                pageName: 'login-screen'
-            })
-        }
-        else
-        {
-
-            var da = {
-                phoneNumber: localStorage.getItem("phone"),
-                action: "fetchData"
-
-            };
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: registerurl,
-                data: Object.toparams(da),
-                cache: false
-            }).done(function(msg) {
-
-                console.log(msg);
-            });
-        }
-
-
-
-    }
 
 
     else if (page.name === "offer-detail-screen")
@@ -128,7 +106,7 @@ $$(document).on('pageInit', function(e) {
                 //container for $li to be added
                 $.each(info1, function(id, offername, offerdescription, offerlimit, offerpicture, offernotes) {
 
-                    li += '<li class="accordion-item"><a href="#" class="item-content item-link"> <div class="item-inner"><b>' + offername.offername + '</b></div></div></a> <div class="accordion-item-content"><div class="content-block"><br/><b>Offer Description</b>: ' + offername.offerdescription + '<br/><br/><b>Limit: </b>' + offername.offerlimit + '<br/><br/><b>Special Notes: </b>' + offername.offernotes + '<br/><br/><a href="#" class="avail-offer" offerid='+offername.offerid+'>Avail Offer</a></p></div></div></li>';
+                    li += '<li class="accordion-item"><a href="#" class="item-content item-link"> <div class="item-inner"><b>' + offername.offername + '</b></div></div></a> <div class="accordion-item-content"><div class="content-block"><br/><b>Offer Description</b>: ' + offername.offerdescription + '<br/><br/><b>Limit: </b>' + offername.offerlimit + '<br/><br/><b>Special Notes: </b>' + offername.offernotes + '<br/><br/><a href="#" class="avail-offer" offerid=' + offername.offerid + '>Avail Offer</a></p></div></div></li>';
                 });
 
                 $$('#listc ul').html("");
@@ -140,15 +118,46 @@ $$(document).on('pageInit', function(e) {
 
 
     }
+    else if (page.name == "profile-screen")
+    {
+
+        var da = {
+            phoneNumber: localStorage.getItem("phone"),
+            action: "fetchData"
+        };
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: registerurl,
+            data: Object.toparams(da)
+        }).done(function(msg) {
+
+
+
+
+            $("#profileform").find('input[name="fullname"]').val(msg[0].fullName);
+            $("#profileform").find('input[name="phonenumber"]').val(msg[0].phoneNumber);
+            $("#profileform").find('input[name="password"]').val(msg[0].password);
+            $("#profileform").find('input[name="confpassword"]').val(msg[0].password);
+            $("#profileform").find('input[name="email"]').val(msg[0].email);
+
+        }).error(function(msgerr) {
+
+            myApp.alert('Error' + msgerr);
+
+        });
+
+    }
 
 });
 
 
-$$(document).on('pageAfterBack', function(e) {
+$$(document).on('pageReinit', function(e) {
     // Page Data contains all required information about loaded and initialized page 
     var page = e.detail.page;
 
-    console.log(page);
+
 
     if (page.name === "offer-screen")
     {
@@ -194,18 +203,30 @@ $$(document).on('pageAfterBack', function(e) {
             var da = {
                 phoneNumber: localStorage.getItem("phone"),
                 action: "fetchData"
-
             };
+
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 url: registerurl,
-                data: Object.toparams(da),
-                cache: false
+                data: Object.toparams(da)
             }).done(function(msg) {
 
-                console.log(msg);
+
+
+
+                $("#profileform").find('input[name="fullname"]').val(msg[0].fullName);
+                $("#profileform").find('input[name="phonenumber"]').val(msg[0].phoneNumber);
+                $("#profileform").find('input[name="password"]').val(msg[0].password);
+                $("#profileform").find('input[name="confpassword"]').val(msg[0].password);
+                $("#profileform").find('input[name="email"]').val(msg[0].email);
+
+            }).error(function(msgerr) {
+
+                myApp.alert('Error' + msgerr);
+
             });
+
         }
 
 
@@ -222,25 +243,6 @@ $$(document).on('pageAfterBack', function(e) {
         }
         else
         {
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: ServerURL + "getOffers.php?id=" + sessionStorage.getItem("Storeid"),
-                cache: false
-            }).done(function(msg) {
-                info1 = msg;
-                //set up string for adding <li/>
-                var li = "";
-                //container for $li to be added
-                $.each(info1, function(id, offername, offerdescription, offerlimit, offerpicture, offernotes) {
-
-                    li += '<li class="accordion-item"><a href="#" class="item-content item-link"> <div class="item-inner"><b>' + offername.offername + '</b></div></div></a> <div class="accordion-item-content"><div class="content-block"><br/><b>Offer Description</b>: ' + offername.offerdescription + '<br/><br/><b>Limit: </b>' + offername.offerlimit + '<br/><br/><b>Special Notes: </b>' + offername.offernotes + '</p></div></div></li>';
-                });
-
-                $$('#listc ul').html("");
-                $$('#listc ul').append(li);
-                //set up string for adding <li/>
-            });
 
         }
 
@@ -251,14 +253,14 @@ $$(document).on('pageAfterBack', function(e) {
 
 $$(document).on('click', '.avail-offer', function(event) {
 
-    
+
     var offerid = $(this).attr("offerid");
- 
+
     var da = {
-        outletid: sessionStorage.getItem("StoreId"),
+        outletid: sessionStorage.getItem("Storeid"),
         offerid: offerid,
         phoneNumber: localStorage.getItem("phone"),
-        userid: "3"
+        userid: localStorage.getItem("userid")
     };
 
     $.ajax({
@@ -277,7 +279,7 @@ $$(document).on('click', '.avail-offer', function(event) {
 
 
             myApp.alert('Offer availed successfully.');
-         
+
 
         }
         else
@@ -291,8 +293,8 @@ $$(document).on('click', '.avail-offer', function(event) {
 
     });
 
- 
-    
+
+
 });
 
 
@@ -341,7 +343,7 @@ $$('.btnsignup').on('click', function() {
 
 
 
-            myApp.alert('You have successfully signed up.');
+
             mainView.router.load({
                 pageName: 'offer-screen'
             });
@@ -362,6 +364,56 @@ $$('.btnsignup').on('click', function() {
 
 
 });
+
+
+$$('.btnsave').on('click', function() {
+
+    var fullName = $("#profileform").find('input[name="fullname"]').val();
+    var PhoneNumber = $("#profileform").find('input[name="phonenumber"]').val();
+    var password = $("#profileform").find('input[name="password"]').val();
+    var confpassword = $("#profileform").find('input[name="confpassword"]').val();
+    var email = $("#profileform").find('input[name="email"]').val();
+    var countryCode = "91";
+
+    var da = {
+        fullName: fullName,
+        phoneNumber: PhoneNumber,
+        password: password,
+        email: email,
+        countryCode: countryCode,
+        action: "saveData"
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: registerurl,
+        data: Object.toparams(da)
+    }).done(function(msg) {
+
+
+
+
+        if (msg == "1" || msg == "2")
+        {
+
+            myApp.alert('Data Saved');
+
+        }
+        else
+        {
+            myApp.alert('Please enter all the details');
+        }
+
+    }).error(function(msgerr) {
+
+        myApp.alert('Error' + msgerr);
+
+    });
+
+
+});
+
 
 $$('.opensignin').on('click', function() {
     myApp.confirm('Are you sure?', 'Login',
@@ -384,8 +436,8 @@ $$('.opensignin').on('click', function() {
                     if (msg.loginData.loginSuccess == "1")
                     {
                         localStorage.setItem("phone", PhoneNumber);
-
-                        myApp.alert('You have successfully signed in.');
+                        localStorage.setItem("userid", msg.loginData.id);
+                        sessionStorage.setItem("deals", msg.loginData.dealsAvailed);
 
                         mainView.router.load({
                             pageName: 'offer-screen'
@@ -393,6 +445,13 @@ $$('.opensignin').on('click', function() {
 
 
                     }
+                    else if (msg.loginData.loginSuccess == "0")
+                    {
+                        mainView.router.load({
+                            pageName: 'login-screen'
+                        })
+                    }
+
                     else
                     {
                         myApp.alert('Please enter correct credentials');
@@ -450,17 +509,17 @@ angular.module("myapp", [])
 
 
 
-            $scope.getoffers = function() {
-
-                initiate_geolocation();
-
-
-            }
 
 
 
         });
 
+
+$$('.getoffers').on('click', function() {
+
+    initiate_geolocation();
+
+});
 
 $$('.open-signup').on('click', function() {
     myApp.popup('.popup-signup');
@@ -497,21 +556,45 @@ function initialize(lat, lon)
 
 
 // Append new items
-     
-        $$('.list-block ul').append(li);
+
+        $$('#lisplace ul').append(li);
 
 
-        $$('.info-go').on('click', function() {
-            var Storeid = $(this).attr("id");
-
-
-            sessionStorage.setItem("Storeid", Storeid);
-
-//mainView.router.load({
-//    url: 'newhtml.html#'
-//})
-        });
 
     });
 
 }
+
+$$(document).on('click', '.info-go', function(event) {
+    var Storeid = $(this).attr("id");
+
+
+    sessionStorage.removeItem("Storeid");
+    sessionStorage.setItem("Storeid", Storeid);
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: ServerURL + "getOffers.php?id=" + sessionStorage.getItem("Storeid"),
+        cache: false
+    }).done(function(msg) {
+        info1 = msg;
+        //set up string for adding <li/>
+        var li = "";
+        //container for $li to be added
+        $.each(info1, function(id, offername, offerdescription, offerlimit, offerpicture, offernotes) {
+
+            li += '<li class="accordion-item"><a href="#" class="item-content item-link"> <div class="item-inner"><b>' + offername.offername + '</b></div></div></a> <div class="accordion-item-content"><div class="content-block"><br/><b>Offer Description</b>: ' + offername.offerdescription + '<br/><br/><b>Limit: </b>' + offername.offerlimit + '<br/><br/><b>Special Notes: </b>' + offername.offernotes + '<br/><br/><a href="#" class="avail-offer" offerid=' + offername.offerid + '>Avail Offer</a></p></div></div></li>';
+        });
+
+        $$('#listc ul').html("");
+        $$('#listc ul').append(li);
+        //set up string for adding <li/>
+    });
+
+
+
+//mainView.router.load({
+//    url: 'newhtml.html#'
+//})
+});
