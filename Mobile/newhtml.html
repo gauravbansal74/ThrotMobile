@@ -24,38 +24,54 @@
         <div class="views">
             <!-- Your main view -->
             <!-- Your main view, should have "view-main" class -->
-            <div class="view view-main theme-orange">
+            <div class="view view-main theme-red">
+                <!-- Navbar -->
+                <div class="navbar">
+                 
 
+                    <!-- Offer Screen page navbar -->
+                    
+                      <div class="navbar-inner cached" data-page="login-screen">
+                         <div class="center">Throt</div>
+                    </div>
+                    <div class="navbar-inner cached" data-page="offer-screen">
+                         <div class="center">Offer Screen</div>
+                    </div>
+
+                    <!-- Services page navbar -->
+                    <div class="navbar-inner cached" data-page="offer-detail-screen">
+                              <div class="left">  <a href="#" class="back link">Back</a></div>
+                 
+                        <div class="center">Offer Detail</div>
+                    </div>
+                    
+                       <!-- Services page navbar -->
+                    <div class="navbar-inner cached" data-page="profile-screen">
+                            <div class="left">  <a href="#" class="back link">Back</a></div>
+                 
+                        <div class="center">Profile</div>
+                    </div>
+                       
+                             <!-- Services page navbar -->
+                    <div class="navbar-inner cached" data-page="wallet-screen">
+                            <div class="left">  <a href="#" class="back link">Back</a></div>
+                 
+                        <div class="center">Wallet</div>
+                    </div>
+                </div>
                 <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
                 <div class="pages navbar-through toolbar-through">
 
                     <!-- Page, "data-page" contains page name -->
-                    <div data-page="login-screen" class="page" ng-controller="MyController">
-                        <div class="navbar">
-                            <div class="navbar-inner navbar-on-left">
+                    <div data-page="login-screen" class="page navbar-through">
 
-                                <div class="center sliding i18n" data-i18n="app.name" style="left: 652px; transform: translate3d(-652px, 0px, 0px); -webkit-transform: translate3d(-652px, 0px, 0px);">HiApp</div>
-
-                            </div>
-                            <div class="navbar-inner navbar-on-center">
-
-                                <div class="left">
-                                    <a href="#" class="back back2contact link text-navbar">
-                                        <i class="icon ios7-arrow-thin-left"></i>
-                                        <span>Back</span>
-                                    </a>
-                                </div>
-
-                                <div class="center chat-name sliding" style="left: -627px; transform: translate3d(0px, 0px, 0px); -webkit-transform: translate3d(0px, 0px, 0px);">Throt</div>
-
-                            </div></div>
                         <!-- Scrollable page content -->
                         <div class="page-content">
 
 
                             <div class="list-block">
-                                <div class="login-screen-title">Logo will go above!</div>
-                                <div class="login-screen-title"></div>
+                               
+                                <div class="login-screen-title">Throt</div>
                                 <form id="loginform" name="loginform" class="list-block" novalidate>
                                     <ul>
                                         <!-- Text inputs -->
@@ -89,27 +105,20 @@
 
 
                                     <br/>
-                                    <div class="row">
-                                        <div class="col-50">
-                                            <input type="submit" class="opensignin button button-big button-green button-fill open-preloader"
-                                                   />
-                                        </div>
-                                        <div class="col-50">
+                              
 
+                                        <div class="content-block"> <input type="submit" class="opensignin button button-big button-green button-fill open-preloader" value="Sign In"
+                                               />
+                                            </div>
 
-
-                                            <a href="#" class="button button-big button-red button-fill">Cancel</a>
-
-
-                                        </div>
-                                    </div>   
+                               
                                 </form>
 
 
                             </div>
 
 
-                            <p><a href="#" class="open-login-screen item-link button button-big open-preloader">Sign Up</a></p>
+                              <div class="content-block"> <a href="#" class="open-login-screen item-link button button-big open-preloader">Sign Up</a></div>
 
 
 
@@ -121,23 +130,15 @@
 
                     </div>
 
-                    <div data-page="offer-screen" class="page cached" ng-controller="MyController">
-                        <div class="navbar">
-                            <div class="navbar-inner">
-                                <div class="left"></div>
-                                <div class="center">Throt</div>
-                                <div class="right"></div>
-                            </div>
-                        </div>
+                    <div data-page="offer-screen" class="page cached navbar-through">
+
                         <div class="page-content">
 
 
 
                             <div class="list-block">
-                                <div class="login-screen-title">Logo will go above!</div>
-
-
-                                <p>  <a href="#" class="getoffers button button-big theme-orange open-preloader">Get Offers</a></p>
+                            
+                                  <div class="content-block">   <a href="#" class="getoffers button button-big theme-orange open-preloader"><i class="icon" style="padding: 6px 10px 0px 0px;"><img src="img/compass.png"></i>Discover </a></div>
 
 
                                 <div class="list-block" id="lisplace">
@@ -146,46 +147,25 @@
 
                             </div>
                         </div>
-                        <div class="toolbar">
+                        <div class="toolbar tabbar tabbar-labels">
                             <div class="toolbar-inner">
-                                <a href="#offer-screen" class="link">Get Offers</a>
-                                <a href="#" class="link">My Wallet</a>
-                                <a href="#profile-screen" class="link">Profile</a>
+                                <a href="#offer-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Get Offers</a>
+                                <a href="#wallet-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>My Wallet</a>
+                                <a href="#profile-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Profile</a>
                             </div>
                         </div>
                     </div>
 
 
-                    <div data-page="offer-detail-screen" class="page cached">
-                        <div class="navbar">
-                            <div class="navbar-inner navbar-on-left">
-
-                                <div class="center sliding i18n" data-i18n="app.name" style="left: 652px; transform: translate3d(-652px, 0px, 0px); -webkit-transform: translate3d(-652px, 0px, 0px);">HiApp</div>
-
-                            </div>
-                            <div class="navbar-inner navbar-on-center">
-
-                                <div class="left">
-                                    <a href="#" class="back back2contact link text-navbar">
-                                        <i class="icon ios7-arrow-thin-left"></i>
-                                        <span>Back</span>
-                                    </a>
-                                </div>
-
-                                <div class="center chat-name sliding" style="left: -627px; transform: translate3d(0px, 0px, 0px); -webkit-transform: translate3d(0px, 0px, 0px);">Throt</div>
-
-                            </div></div>
+                    <div data-page="offer-detail-screen" class="page cached navbar-through">
+                      
                         <div class="page-content">
 
                             <div class="list-block">
-                                <div class="login-screen-title">Logo will go above!</div>
+                             
 
 
-
-                                <div class="content-block-title"> <a href="#" class="back-page">
-
-                                        <span>Back</span>
-                                    </a></div>
+                                <div class="content-block-title"></div>
 
 
 
@@ -193,7 +173,7 @@
                                 <div class="content-block-title">Offer Details</div>
 
 
-                                <div class="list-block" id="listc">
+                                <div class="list-block accordion-list" id="listc">
                                     <ul>
 
                                     </ul>
@@ -202,137 +182,134 @@
 
                             </div>
                         </div>
-                        <div class="toolbar">
+                        <div class="toolbar tabbar tabbar-labels">
                             <div class="toolbar-inner">
-                                <a href="#offer-screen" class="link">Get Offers</a>
-                                <a href="#" class="link">My Wallet</a>
-                                <a href="#profile-screen" class="link">Profile</a>
+                                <a href="#offer-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Get Offers</a>
+                                <a href="#wallet-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>My Wallet</a>
+                                <a href="#profile-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Profile</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div data-page="wallet-screen" class="page cached navbar-through">
+                      
+                        <div class="page-content">
+
+                            <div class="list-block">
+                               
+
+
+                                <div class="content-block-title"></div>
+
+
+
+                                <!-- Custom Accordion -->
+                                <div class="content-block-title">Wallet</div>
+
+
+                                <div class="list-block media-list" id="listwallet">
+                                    <ul>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="toolbar tabbar tabbar-labels">
+                            <div class="toolbar-inner">
+                                <a href="#offer-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Get Offers</a>
+                                <a href="#wallet-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>My Wallet</a>
+                                <a href="#profile-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Profile</a>
                             </div>
                         </div>
                     </div>
 
 
 
-                    <div data-page="profile-screen" class="page cached">
-                        <div class="navbar">
-                            <div class="navbar-inner navbar-on-left">
-
-                                <div class="center sliding i18n" data-i18n="app.name" style="left: 652px; transform: translate3d(-652px, 0px, 0px); -webkit-transform: translate3d(-652px, 0px, 0px);">HiApp</div>
-
-                            </div>
-                            <div class="navbar-inner navbar-on-center">
-
-                                <div class="left">
-                                    <a href="#" class="back back2contact link text-navbar">
-                                        <i class="icon ios7-arrow-thin-left"></i>
-                                        <span>Back</span>
-                                    </a>
-                                </div>
-
-                                <div class="center chat-name sliding" style="left: -627px; transform: translate3d(0px, 0px, 0px); -webkit-transform: translate3d(0px, 0px, 0px);">Throt</div>
-
-                            </div></div>
+                    <div data-page="profile-screen" class="page cached navbar-through">
+                 
                         <div class="page-content">
 
-                          
-                                <div class="login-screen-title">Logo will go above!</div>
 
+                            <form id="profileform" name="profileform" class="list-block" novalidate>
+                                <ul>
+                                    <!-- Text inputs -->
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                            <div class="item-inner">
 
-                                <form id="profileform" name="profileform" class="list-block" novalidate>
-                                    <ul>
-                                        <!-- Text inputs -->
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-media"><i class="icon icon-form-name"></i></div>
-                                                <div class="item-inner">
-
-                                                    <div class="item-input">
-                                                        <input type="text" name="fullname" placeholder="Full Name">
-                                                    </div>
+                                                <div class="item-input">
+                                                    <input type="text" name="fullname" placeholder="Full Name">
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-media"><i class="icon icon-form-tel"></i></div>
-                                                <div class="item-inner">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                                            <div class="item-inner">
 
-                                                    <div class="item-input">
-                                                        <input type="number" name="phonenumber" placeholder="Your Phone Number" required>
+                                                <div class="item-input">
+                                                    <input type="number" name="phonenumber" placeholder="Your Phone Number" required>
 
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </div>
+                                    </li>
 
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-media"><i class="icon icon-form-email"></i></div>
-                                                <div class="item-inner">
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-media"><i class="icon icon-form-email"></i></div>
+                                            <div class="item-inner">
 
-                                                    <div class="item-input">
-                                                        <input type="email" name="email" placeholder="Your Email" required>
+                                                <div class="item-input">
+                                                    <input type="email" name="email" placeholder="Your Email" required>
 
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-media"><i class="icon icon-form-password"></i></div>
-                                                <div class="item-inner">
+                                        </div>
+                                    </li>
+                                         <li>
+                                        <div class="item-content">
+                                            <div class="item-media"><i class="icon icon-form-password"></i></div>
+                                            <div class="item-inner">
 
-                                                    <div class="item-input">
-                                                        <input type="password" name="password" placeholder="Your Password">
-                                                    </div>
+                                                <div class="item-input">
+                                                    <input type="password" name="password" placeholder="Your Password" required>
+
                                                 </div>
                                             </div>
-                                        </li>
+                                        </div>
+                                    </li>
 
-                                        <li>
-                                            <div class="item-content">
-                                                <div class="item-media"><i class="icon icon-form-password"></i></div>
-                                                <div class="item-inner">
 
-                                                    <div class="item-input">
-                                                        <input type="password" name="confpassword" placeholder="Confirm Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                </ul>
 
 
 
-                                    </ul>
+                                 <div class="content-block"> 
+
+                                    <input type="submit" class="btnsave button button-big button-green button-fill open-preloader" value="Save"/>
 
 
-                                   
-                                    <div class="row">
+                                </div>
 
-                                        <input type="submit" class="btnsave button button-big button-green button-fill open-preloader" value="Save"
-                                               />
+                            </form>
 
 
 
 
 
 
-
-                                    </div>  
-
-                                </form>
-
-
-
-
-
-                           
                         </div>
-                        <div class="toolbar">
+                        <div class="toolbar tabbar tabbar-labels">
                             <div class="toolbar-inner">
-                                <a href="#offer-screen" class="link">Get Offers</a>
-                                <a href="#wallet-screen" class="link">My Wallet</a>
-                                <a href="#profile-screen" class="link">Profile</a>
+                                <a href="#offer-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Get Offers</a>
+                                <a href="#wallet-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>My Wallet</a>
+                                <a href="#profile-screen" class="link"><i class="icon tabbar-demo-icon-2"></i>Profile</a>
                             </div>
                         </div>
                     </div>
@@ -399,9 +376,9 @@
 
 
                                         <br/>
-                                        <div class="row">
+                                        <div class="content-block">
 
-                                            <input type="submit" class="btnsignup button button-big button-green button-fill open-preloader"
+                                            <input type="submit" class="btnsignup button button-big button-green button-fill open-preloader" value="Sign Up"
                                                    />
 
 
@@ -410,7 +387,7 @@
 
 
 
-                                        </div>  
+                                        </div>
                                         <div class="list-block-label">
 
                                             <p><a href="#" class="close-login-screen">Close Screen</a></p>
@@ -430,9 +407,9 @@
 
         <script src="scripts/framework7.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-          <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-  
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
         <script src="scripts/my-app.js"></script>
 
     </body>
